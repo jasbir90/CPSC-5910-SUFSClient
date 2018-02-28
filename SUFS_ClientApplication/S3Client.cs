@@ -18,8 +18,8 @@ namespace SUFS_ClientApplication
     public class S3Client
     {
 
-        static string secretKey = "6lsyArw7nHtWnWokLLyxb3rhyuM8BCXA0bD/IzEf";
-        static string accessKey = "AKIAJT6LW6CX5QWCJ67A";
+        static string secretKey = "";
+        static string accessKey = "";
 
         public long getBucketSize()
         {

@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<sitemanifest>
+  <IisApp path="C:\Users\jasbir kaur\source\repos\SUFS_ClientApplication\SUFS_ClientApplication\obj\Debug\Package\PackageTmp" />
+  <setAcl path="C:\Users\jasbir kaur\source\repos\SUFS_ClientApplication\SUFS_ClientApplication\obj\Debug\Package\PackageTmp" setAclResourceType="Directory" />
+  <setAcl path="C:\Users\jasbir kaur\source\repos\SUFS_ClientApplication\SUFS_ClientApplication\obj\Debug\Package\PackageTmp" setAclUser="anonymousAuthenticationUser" setAclResourceType="Directory" />
+</sitemanifest>

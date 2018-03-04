@@ -27,10 +27,12 @@ namespace SUFS_ClientApplication
 
 public void button1Clicked(object sender, EventArgs args)
 
+       
         {
-            
-            button1.Text = cli.getBucketSize().ToString();
-
+            string bucketName = Page.Request.Form["bucketName"].ToString();
+            string keyName = Page.Request.Form["keyName"].ToString();
+            button1.Text = cli.getBucketSize(bucketName, keyName).ToString();
+            cli.retrieveObjectFromS3(bucketName, keyName,0,100);
         }
 
         /*protected void Page_Load(object sender, EventArgs e)

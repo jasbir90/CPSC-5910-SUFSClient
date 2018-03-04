@@ -31,11 +31,13 @@
         </ul>
     </div>
 </div> -->
+   <h1><center> <b> <u>SU File System </u></b></center></h1>
     <form id="form1" runat="server">
         <p>
-            <label>Create File</label>
-            <label>Enter S3 path:</label> <br/>
-            <input type= "text"/> <br/><br/>
+            <label>Enter Bucket Name:</label> <br/>
+            <input type= "text" name="bucketName"/> <br/><br/>
+            <label>Enter Key Name:</label> <br/>
+            <input type= "text" name="keyName"/> <br/><br/>
             <asp:Button id="button1" runat="server" Text="Create File" OnClick="button1Clicked" />
         </p>
         <br/>

@@ -21,30 +21,45 @@ namespace SUFS_ClientApplication
         static string secretKey = "";
         static string accessKey = "";
 
-        public long getBucketSize()
+       AmazonS3Config config1 = new AmazonS3Config();
+        //config1.ServiceURL = "objects.dreamhost.com";
+
+        AmazonS3Client s3Client = new AmazonS3Client(
+                 accessKey, secretKey
+                );
+        public long getBucketSize(string bucketName, string keyName)
         {
-            string bucketName = "wordcount-kaurj7";
-            long bucketSize = -1;
-
-            AmazonS3Config config1 = new AmazonS3Config();
-            //config1.ServiceURL = "objects.dreamhost.com";
-
-            AmazonS3Client s3Client = new AmazonS3Client(
-                     accessKey, secretKey
-                    );
-
-            ListObjectsRequest request = new ListObjectsRequest();
-            request.BucketName = bucketName;
-            ListObjectsResponse response = s3Client.ListObjects(request);
-            foreach (S3Object o in response.S3Objects)
+            GetObjectRequest request = new GetObjectRequest
             {
-                if (o.BucketName == bucketName)
-                    bucketSize = o.Size;
-                //Console.WriteLine("{0}\t{1}\t{2}", o.Key, o.Size, o.LastModified);
-
+                BucketName = bucketName,
+                Key = keyName,
+                
+            };
+            long size;
+            using (GetObjectResponse response = s3Client.GetObject(request))
+            {
+                 size = response.ContentLength;
             }
-            Console.WriteLine(bucketSize);
-            return bucketSize;
+            return size;
+
+        }
+        public void retrieveObjectFromS3(string bucketName, string keyName, int startByte, int endByte)
+        {
+            GetObjectRequest request = new GetObjectRequest
+            {
+                BucketName = bucketName,
+                Key = keyName,
+                ByteRange = new ByteRange(startByte, endByte)
+            };
+
+            using (GetObjectResponse response = s3Client.GetObject(request))
+            {
+                string dest = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Desktop), keyName);
+                if (!File.Exists(dest))
+                {
+                    response.WriteResponseStreamToFile(dest);
+                }
+            }
 
 
         }
